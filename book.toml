@@ -3,3 +3,38 @@ title = "TerrariaDigitalWiringTutorial"
 authors = ["混乱沉睡"]
 language = "en"
 src = "chapters"
+
+[preprocessor.katex]
+after = ["links"]
+# KaTeX options.
+output = "html"
+leqno = false
+fleqn = false
+throw-on-error = true
+error-color = "#cc0000"
+min-rule-thickness = -1.0
+max-size = "Infinity"
+max-expand = 1000
+trust = false
+# Extra options.
+no-css = false
+include-src = false
+block-delimiter = { left = "$$", right = "$$" }
+inline-delimiter = { left = "$", right = "$" }
+pre-render = true
+
+[preprocessor.mermaid]
+command = "mdbook-mermaid"
+
+[output]
+
+[output.html]
+additional-js = ["mermaid.min.js", "mermaid-init.js"]
+
+
+
+# [preprocessor.admonish]
+# command = "mdbook-admonish"
+
+# [output.html]
+# additional-css = ["./mdbook-admonish.css"]
