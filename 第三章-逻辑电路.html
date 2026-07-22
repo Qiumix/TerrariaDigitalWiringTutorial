@@ -1,0 +1,2040 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>第三章 逻辑电路</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="/usr/share/javascript/mathjax/MathJax.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">第三章 逻辑电路</h1>
+</header>
+<h2 id="第三章-逻辑电路">第三章 逻辑电路</h2>
+<h3 id="组合逻辑">3.1 组合逻辑</h3>
+<h4 id="基本逻辑运算">3.1.1 基本逻辑运算</h4>
+<p>泰拉瑞亚组合逻辑电路中存在四种基本逻辑运算：<strong>非、异或、与、独热</strong>。其中非和异或使用逻辑灯完成；与和独热使用逻辑门完成。</p>
+<div class="admonition info">
+<p>现实组合逻辑电路中存在三种基本逻辑运算：<strong>与、或、非</strong>。</p>
+</div>
+<div class="admonition tip">
+<p>线或应用于激活用电器，属于时序逻辑电路，此外组合逻辑电路中并不会使用或门，所以或并不属于组合逻辑电路的基本逻辑运算。</p>
+</div>
+<h5 id="非">非</h5>
+<p><span class="math display">\[y = \lnot a\]</span></p>
+<p><img src="chapters/images/3/1/1/not.png" /></p>
+<h5 id="异或">异或</h5>
+<p><span class="math display">\[y = a \oplus b\]</span></p>
+<p><img src="chapters/images/3/1/1/xor.png" /></p>
+<h5 id="与">与</h5>
+<p><span class="math display">\[y = a \land b\]</span></p>
+<p><img src="chapters/images/3/1/1/and.png" /></p>
+<h5 id="独热">独热</h5>
+<p><span class="math display">\[y = \mathrm{OneHot}(a, b)\]</span></p>
+<p><img src="chapters/images/3/1/1/one-hot.png" /></p>
+<h4 id="更多逻辑运算">3.1.2 更多逻辑运算</h4>
+<p>除了基本逻辑结算和前面介绍的常用逻辑运算外，组合逻辑中还有另外一些经常使用的逻辑运算。</p>
+<h5 id="比较">比较</h5>
+<p>比较运算是比较两个变量的大小或关系，当条件成立时输出 1，否则输出
+0。</p>
+<p>对于两个变量，可以定义六种基本的比较关系：<strong>小于（LT）、大于（GT）、小于等于（LE）、大于等于（GE）、等于（EQ）、不等于（NE）</strong>。它们在所有输入情况下的输出如下表所示：</p>
+<table>
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>&gt;</th>
+<th>输入</th>
+<th>&gt;</th>
+<th>&gt;</th>
+<th>&gt;</th>
+<th>&gt;</th>
+<th>&gt;</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>a</td>
+<td>b</td>
+<td><span class="math inline">\(a &lt; b\)</span></td>
+<td><span class="math inline">\(a &gt; b\)</span></td>
+<td><span class="math inline">\(a &lt;= b\)</span></td>
+<td><span class="math inline">\(a &gt;= b\)</span></td>
+<td><span class="math inline">\(a == b\)</span></td>
+<td><span class="math inline">\(a\ != b\)</span></td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition info">
+<p>与运算只有在所有输入都为 1 时才输出 1，其余情况输出 0：</p>
+<p><span class="math display">\[
+a_1 \land a_2 \land \cdots \land a_n =
+\left\{
+    \begin{array}{ll}
+        1 &amp; \textrm{当 } a_1 = a_2 = \cdots = a_n = 1 \textrm{ 时}
+\\
+        0 &amp; \textrm{其他情况}
+    \end{array}
+\right.
+\]</span></p>
+<div class="admonition example">
+<p><img src="chapters/images/3/1/2/and_all_one.png" /></p>
+<p>只有在输入 <span class="math inline">\(a_1\)</span> ~ <span
+class="math inline">\(a_4\)</span> 全为 1 时，输出才为 1；其余情况输出
+0。</p>
+</div>
+<p>如果将与运算的所有输入取反，则逻辑变为：所有输入都为 0 时输出
+1，否则输出 0：</p>
+<p><span class="math display">\[
+\lnot a_1 \land \lnot a_2 \land \cdots \land \lnot a_n =
+\left\{
+    \begin{array}{ll}
+        1 &amp; \textrm{当 } a_1 = a_2 = \cdots = a_n = 0 \textrm{ 时}
+\\
+        0 &amp; \textrm{其他情况}
+    \end{array}
+\right.
+\]</span></p>
+<div class="admonition example">
+<p><img src="chapters/images/3/1/2/and_all_zero.png" /></p>
+<p>只有在输入 <span class="math inline">\(a_1\)</span> ~ <span
+class="math inline">\(a_4\)</span> 全为 0 时，输出才为 1；其余情况输出
+0。</p>
+</div>
+<p>若只对部分输入取反，则该逻辑在“未取反的输入为 1，取反的输入为
+0”时输出 1，其余情况输出 0：</p>
+<p><span class="math display">\[
+a_1 \land a_2 \land \cdots \land a_m \land \lnot b_1 \land \lnot b_2
+\land \cdots \land \lnot b_n =
+\left\{
+    \begin{array}{ll}
+        1 &amp; \textrm{当 } a_1 = a_2 = \cdots = a_n = 1 \textrm{ 且}
+\\
+            &amp; b_1 = b_2 = \cdots = b_n = 0 \textrm{ 时} \\
+        0 &amp; \textrm{其他情况}
+    \end{array}
+\right.
+\]</span></p>
+<div class="admonition example">
+<p><img src="chapters/images/3/1/2/and_half_one.png" /></p>
+<p>只有在输入 <span class="math inline">\(a_1\)</span> ~ <span
+class="math inline">\(a_2\)</span> 全为 1 且 <span
+class="math inline">\(a_1\)</span> ~ <span
+class="math inline">\(a_2\)</span> 全为 0 时，输出才为 1；其余情况输出
+0。</p>
+</div>
+<p>这种只在真值表中某一行输出为 1 的逻辑表达式称为
+<strong>最小项</strong>。</p>
+<div class="admonition example">
+<p>对于三输入逻辑函数，若只希望在 <span class="math inline">\(a = 0,\ b
+= 1,\ c = 1\)</span> 时输出 1，可以使用最小项 <span
+class="math inline">\(\lnot a \land b \land
+c\)</span>，该表达式仅在这一输入组合下输出 1。</p>
+<div class="admonition quote">
+<p><img src="chapters/images/3/1/2/and_lut.png" /></p>
+<p>只有在输入 <span class="math inline">\(a = 0,\ b = 1,\ c = 1\)</span>
+时，输出才为 1；其余情况输出 0。</p>
+</div>
+</div>
+<p>最小项中每个输入逻辑变量都会出现，且只会出现一次；每个变量在最小项中都有“取反”和“不取反”两种情况。因此对于
+<span class="math inline">\(n\)</span> 个变量，一共有 <span
+class="math inline">\(2^n\)</span>
+个最小项，恰好对应真值表的每一行。任意输入，都只会有一个最小项输出为
+1。</p>
+<div class="admonition example">
+<p>三输入变量对应的最小项如下：</p>
+<table>
+<thead>
+<tr class="header">
+<th>&gt;</th>
+<th>&gt;</th>
+<th>输入</th>
+<th>输出为 1 最小项</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>a</td>
+<td>b</td>
+<td>c</td>
+<td>y</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td><span class="math inline">\(\lnot a \land \lnot b \land \lnot
+c\)</span></td>
+</tr>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td><span class="math inline">\(\lnot a \land \lnot b \land
+c\)</span></td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td><span class="math inline">\(\lnot a \land b \land \lnot
+c\)</span></td>
+</tr>
+<tr class="odd">
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td><span class="math inline">\(\lnot a \land b \land c\)</span></td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td><span class="math inline">\(a \land \lnot b \land \lnot
+c\)</span></td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td><span class="math inline">\(a \land \lnot b \land c\)</span></td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td><span class="math inline">\(a \land b \land \lnot c\)</span></td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td><span class="math inline">\(a \land b \land c\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>可以看到真值表中某变量为 0，对应最小项中该变量取反；为
+1，则不取反。</p>
+<div class="admonition quote">
+<p><img src="chapters/images/3/1/2/and_lut_full.png" /></p>
+<p>三输入全部可能的最小项，一共有 <span class="math inline">\(2^3 =
+8\)</span> 个最小项。</p>
+</div>
+</div>
+<p>当输出为 1
+的情况不止一个时，可以将对应的最小项用异或连接。由于任意输入下最多只有一个最小项为
+1，异或运算即可正确合并这些情况。这种由异或连接的最小项称为
+<strong>最小项之和</strong>，它可以表示任意逻辑函数。</p>
+<div class="admonition example">
+<p>对于下表所示的三输入逻辑函数：</p>
+<table>
+<thead>
+<tr class="header">
+<th>&gt;</th>
+<th>&gt;</th>
+<th>输入</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>a</td>
+<td>b</td>
+<td>c</td>
+<td>y</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>其逻辑表达式可写为：</p>
+<p><span class="math display">\[\lnot a \land b \land c \oplus a \land
+\lnot b \land c \oplus a \land b \land \lnot c \oplus a \land b \land
+c\]</span></p>
+<p>对应四个输出为 1 的最小项之和。</p>
+<div class="admonition quote">
+<p><img src="chapters/images/3/1/2/and_lut_all.png" /></p>
+<p>满足该真值表对应逻辑函数的电路。</p>
+</div>
+</div>
+</div>
+<p>利用最小项之和，可以得到六种比较运算对应的逻辑表达式：</p>
+<table>
+<thead>
+<tr class="header">
+<th>运算</th>
+<th>记号</th>
+<th>逻辑表达式</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>小于</td>
+<td><span class="math inline">\(a &lt; b\)</span></td>
+<td><span class="math inline">\(\lnot a \land b\)</span></td>
+</tr>
+<tr class="even">
+<td>大于等于</td>
+<td><span class="math inline">\(a &gt;= b\)</span></td>
+<td><span class="math inline">\(\lnot (\lnot a \land b)\)</span></td>
+</tr>
+<tr class="odd">
+<td>大于</td>
+<td><span class="math inline">\(a &gt; b\)</span></td>
+<td><span class="math inline">\(a \land \lnot b\)</span></td>
+</tr>
+<tr class="even">
+<td>小于等于</td>
+<td><span class="math inline">\(a &lt;= b\)</span></td>
+<td><span class="math inline">\(\lnot (a \land \lnot b)\)</span></td>
+</tr>
+<tr class="odd">
+<td>不等于</td>
+<td><span class="math inline">\(a\ != b\)</span></td>
+<td><span class="math inline">\(a \oplus b\)</span></td>
+</tr>
+<tr class="even">
+<td>等于</td>
+<td><span class="math inline">\(a == b\)</span></td>
+<td><span class="math inline">\(\lnot (a \oplus b)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><img src="chapters/images/3/1/2/compare.png" /></p>
+<div class="admonition tip">
+<p>可以看到，小于和大于等于、大于和小于等于、不等于和等于两两互为取反；小于和大于、小于等于和大于等于的区别是交换两个输入。在比较电路中，常利用这一性质减少所需的逻辑门数量。</p>
+<div class="admonition example">
+<p><img src="chapters/images/3/1/2/compare_all.png" /></p>
+<ul>
+<li><strong>NOT OUT</strong>
+控制是否对输出取反，以在小于（<strong>LT</strong>）和大于等于（<strong>GE</strong>）、大于（<strong>GT</strong>）和小于等于（<strong>LE</strong>）、等于（<strong>EQ</strong>）和不等于（<strong>NE</strong>）间切换；</li>
+<li><strong>SW IN</strong>
+交换两个输入，以在小于（<strong>LT</strong>）和大于（<strong>GT</strong>）、大于等于（<strong>GE</strong>）和小于等于（<strong>LE</strong>）间切换；</li>
+</ul>
+</div>
+</div>
+<h5 id="乘mul">乘（MUL）</h5>
+<p>两个变量乘运算的逻辑表达式为：</p>
+<p><span class="math display">\[a \cdot b\]</span></p>
+<div class="admonition info">
+<p>读作 a 乘 b。</p>
+</div>
+<p>或者简写为：</p>
+<p><span class="math display">\[ab\]</span></p>
+<p><span class="math inline">\(n\)</span>
+个变量乘运算的逻辑表达式为：</p>
+<p><span class="math display">\[a_1 \cdot a_2 \cdot \cdots \cdot
+a_n\]</span></p>
+<p>或者简写为：</p>
+<p><span class="math display">\[a_1 a_2 \cdots a_n\]</span></p>
+<p>由乘法关系：</p>
+<p><span class="math inline">\(0 \cdot 0 = 0\)</span> <span
+class="math inline">\(0 \cdot 1 = 0\)</span> <span
+class="math inline">\(1 \cdot 0 = 0\)</span> <span
+class="math inline">\(1 \cdot 1 = 1\)</span></p>
+<p>可列出真值表：</p>
+<table>
+<thead>
+<tr class="header">
+<th>&gt;</th>
+<th>输入</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>a</td>
+<td>b</td>
+<td>y</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p>可以发现与运算就是乘法运算。</p>
+<p><span class="math display">\[a \cdot b = a \land b\]</span></p>
+<p><img src="chapters/images/3/1/2/mul.png" /></p>
+</div>
+<div class="admonition info">
+<p>任何数乘以 0 等于 0，任何数乘以 1 等于其本身。</p>
+<p><span class="math display">\[0 \cdot a = 0\]</span></p>
+<p><span class="math display">\[1 \cdot a = a\]</span></p>
+<p><img src="chapters/images/3/1/2/mul_0_1.png" /></p>
+<p>任何数乘以本身等于其本身。</p>
+<p><span class="math display">\[a \cdot a = a\]</span></p>
+<p>易得：</p>
+<p><span class="math display">\[a \cdot a \cdot \cdots \cdot a =
+a\]</span></p>
+<div class="admonition tip">
+<p>证明可通过观察真值表完成。</p>
+</div>
+<p><img src="chapters/images/3/1/2/mul_self.png" /></p>
+</div>
+<h5 id="加add减sub">加（ADD）、减（SUB）</h5>
+<p>两个变量加运算的逻辑表达式为：</p>
+<p><span class="math display">\[a + b\]</span></p>
+<div class="admonition info">
+<p>读作 a 加 b。</p>
+</div>
+<p><span class="math inline">\(n\)</span>
+个变量加运算的逻辑表达式为：</p>
+<p><span class="math display">\[a_1 + a_2 + \cdots + a_n\]</span></p>
+<div class="admonition question">
+<p><span class="math display">\[1 + 1 = \ ?\]</span></p>
+<p>如果是在实数域，我们可以很容易的说出 <span class="math inline">\(1 +
+1 = 2\)</span> ，但是在逻辑量中并没有 <span
+class="math inline">\(2\)</span>。实际上，在逻辑运算中 <span
+class="math inline">\(1 + 1 = 0\)</span>。</p>
+<p>我们可以用两种方式理解这个结果：</p>
+<ul>
+<li>如果是有进位加法 <span class="math inline">\((1 + 1 =
+10)_2\)</span>，由于逻辑函数只有一位输出，所以抛弃高位的 <span
+class="math inline">\(1\)</span>，只保留低位的 <span
+class="math inline">\(0\)</span>；</li>
+<li>加法可以理解为在数轴上从一个加数出发，前进另一个加数的距离，对于一个只有
+<span class="math inline">\(0\)</span> 和 <span
+class="math inline">\(1\)</span> 首尾相连的循环数轴，如果从 <span
+class="math inline">\(1\)</span> 出发前进 <span
+class="math inline">\(1\)</span>，就会到达 <span
+class="math inline">\(0\)</span>。</li>
+</ul>
+<p><span class="math display">\[\cdots \xrightarrow{+1} 1
+\xrightarrow{+1} 0 \xrightarrow{+1} 1 \xrightarrow{+1} 0
+\xrightarrow{+1} 1 \xrightarrow{+1} 0 \xrightarrow{+1} 1
+\xrightarrow{+1} \cdots\]</span></p>
+</div>
+<p>由加法关系：</p>
+<p><span class="math inline">\(0 + 0 = 0\)</span> <span
+class="math inline">\(0 + 1 = 1\)</span> <span class="math inline">\(1 +
+0 = 1\)</span> <span class="math inline">\(1 + 1 = 0\)</span></p>
+<p>可列出真值表：</p>
+<table>
+<thead>
+<tr class="header">
+<th>&gt;</th>
+<th>输入</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>a</td>
+<td>b</td>
+<td>y</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p>可以发现异或运算就是加法运算。</p>
+<p><span class="math display">\[a + b = a \oplus b\]</span></p>
+<p><img src="chapters/images/3/1/2/add.png" /></p>
+<div class="admonition tip">
+<p>双输入异或和独热等价，为便于理解，图中包括使用双灯异或门实现的异或逻辑。</p>
+<p><span class="math display">\[a \oplus b = \mathrm{OneHot}(a,
+b)\]</span></p>
+</div>
+</div>
+<div class="admonition info">
+<p>任何数加 0 等于其本身，任何数加 1 等于其本身的非。</p>
+<p><span class="math display">\[a + 0 = a\]</span></p>
+<p><span class="math display">\[a + 1 = \lnot a\]</span></p>
+<p><img src="chapters/images/3/1/2/add_0_1.png" /></p>
+<div class="admonition tip">
+<p>线异或两项中的一项恒为 1 相当于线非。</p>
+</div>
+<p>任何数加本身等于 0。</p>
+<p><span class="math display">\[a + a = 0\]</span></p>
+<p>易得：</p>
+<p><span class="math display">\[\underbrace{a + a + \cdots + a}_{n} =
+\begin{cases} 0, &amp; n = 2k, \\[4pt] a, &amp; n = 2k+1, \end{cases}
+\qquad k \in \mathbb{n}.\]</span></p>
+<div class="admonition tip">
+<p>证明可通过观察真值表完成。</p>
+</div>
+<p><img src="chapters/images/3/1/2/add_self.png" /></p>
+<div class="admonition tip">
+<p>奇数个相同项相加等于其本身，偶数个相同项相加等于 0。</p>
+</div>
+<p><img src="chapters/images/3/1/2/add_self_many.png" /></p>
+</div>
+<div class="admonition tip">
+<p>逻辑运算的结果也是逻辑量，这里的乘法和加法是逻辑量间的一位不进位乘和一位不进位加，并非我们在现实中常见的多位有进位乘和多位有进位加。</p>
+<p><span class="math display">\[y = (a \cdot b) \bmod 2\]</span></p>
+<p><span class="math display">\[y = (a + b) \bmod 2\]</span></p>
+<p>由于逻辑量和逻辑运算都在 <span class="math inline">\(GF(2)\)</span>
+上，所以可以省略 <span class="math inline">\(\bmod \ 2\)</span>。</p>
+</div>
+<p>观察上述数轴可以发现，从一个数出发，向左或向右前进相同距离的结果是一样的。</p>
+<p><span class="math display">\[\cdots
+\xrightleftharpoons[\,-1\,]{\,+1\,} 1
+\xrightleftharpoons[\,-1\,]{\,+1\,} 0
+\xrightleftharpoons[\,-1\,]{\,+1\,} 1
+\xrightleftharpoons[\,-1\,]{\,+1\,} 0
+\xrightleftharpoons[\,-1\,]{\,+1\,} 1
+\xrightleftharpoons[\,-1\,]{\,+1\,} 0
+\xrightleftharpoons[\,-1\,]{\,+1\,} 1
+\xrightleftharpoons[\,-1\,]{\,+1\,} \cdots\]</span></p>
+<p>所以可以得出结论：</p>
+<p><span class="math display">\[a + b = a - b\]</span></p>
+<p>也就是说，在逻辑运算中，<strong>加减等价</strong>。</p>
+<div class="admonition info">
+<p>令 <span class="math inline">\(a = 0\)</span>，可得出以下推论：</p>
+<p><span class="math display">\[b = -b\]</span></p>
+<div class="admonition tip">
+<p>取反指非运算，并不是取相反数。</p>
+</div>
+</div>
+<h4 id="逻辑运算律">3.1.3 逻辑运算律</h4>
+<h5 id="交换律结合律分配律">交换律、结合律、分配律</h5>
+<p>加法和乘法满足交换律：</p>
+<p><span class="math display">\[a + b = b + a\]</span></p>
+<p><span class="math display">\[a \cdot b = b \cdot a\]</span></p>
+<div class="admonition example">
+<p><img src="chapters/images/3/1/3/commutativity.png" /></p>
+</div>
+<p>加法和乘法满足结合律：</p>
+<p><span class="math display">\[a + (b + c) = (a + b) + c\]</span></p>
+<p><span class="math display">\[a \cdot (b \cdot c) = (a \cdot b) \cdot
+c\]</span></p>
+<div class="admonition example">
+<p><img src="chapters/images/3/1/3/associativity.png" /></p>
+</div>
+<p>加法不满足分配律，乘法满足分配律：</p>
+<p><span class="math display">\[a + b \cdot c \neq (a + b) \cdot (a +
+c)\]</span></p>
+<p><span class="math display">\[a \cdot (b + c) = a \cdot b + a \cdot
+c\]</span></p>
+<div class="admonition example">
+<p><img src="chapters/images/3/1/3/distributivity.png" /></p>
+</div>
+<p>运算符 <span class="math inline">\(+\)</span>、<span
+class="math inline">\(-\)</span>、<span
+class="math inline">\(\cdot\)</span>
+属于代数运算符，使用代数运算符连接的式子被称为
+<strong>代数运算式</strong>，简称
+<strong>代数式</strong>。相同运算符的运算次序是
+<strong>先左后右</strong>，而不同运算符的运算次序是
+<strong>先乘法再加法</strong>，若有括号，则
+<strong>先进行括号内运算</strong>。</p>
+<div class="admonition example">
+<div class="admonition question">
+<p>证明：任何数乘以本身的非等于 0。</p>
+<p><span class="math display">\[a \cdot \lnot a = 0\]</span></p>
+</div>
+<div class="admonition quote">
+<p><span class="math display">\[\begin{array}{lll} a \cdot \lnot a &amp;
+= &amp; a \cdot (a + 1) \\ &amp; = &amp; a \cdot a + a \\ &amp; = &amp;
+a + a \\ &amp; = &amp; 0 \end{array}\]</span></p>
+</div>
+<p><img src="chapters/images/3/1/3/mul_self_not.png" /></p>
+</div>
+<div class="admonition example">
+<div class="admonition question">
+<p>证明： <span class="math display">\[a \land b = (\lnot a \oplus b)
+\land b\]</span></p>
+</div>
+<div class="admonition quote">
+<p><span class="math display">\[\begin{array}{lll} (\lnot a \oplus b)
+\land b &amp; = &amp; (a + 1 + b) \cdot b \\ &amp; = &amp; a \cdot b + b
++ b \cdot b \\ &amp; = &amp; a \cdot b + b + b \\ &amp; = &amp; a \cdot
+b\end{array}\]</span></p>
+</div>
+<div class="admonition tip">
+<p>有时会需要让与门上某些电线从特定逻辑灯引出，这时可以使用这个技巧重叠电线。</p>
+<p><img src="chapters/images/3/1/3/and_transformatio.png" /></p>
+</div>
+</div>
+<h5 id="普通灯">普通灯</h5>
+<p>普通灯是异或逻辑（线异或），输入是其上所有电线连接的所有电源状态和普通灯初始状态，输出是普通灯状态。其上电线连接
+<span class="math inline">\(m\)</span> 个电源的普通灯代数式中有 <span
+class="math inline">\(m\)</span>
+项相加，每一项都对应一个其上电线连接的电源，然后再加上普通灯初始状态，灭灯为
+0，亮灯为 1。</p>
+<div class="admonition quote">
+<p><span class="math display">\[\mathrm{Lamp}(s_1,\cdots,s_m;l_0) =
+\sum_{i=1}^{m} s_i + l_0\]</span></p>
+<p><span class="math inline">\(m\)</span> 电源输入的普通灯代数式，<span
+class="math inline">\(l_0\)</span> 是普通灯本身状态，灭为 0，亮为
+1。</p>
+</div>
+<div class="admonition example">
+<p>有时会需要让某根电线穿过双灯异或门而不干扰异或门逻辑。</p>
+<p>设异或的两个输入分别为 <span class="math inline">\(m\)</span> 和
+<span class="math inline">\(n\)</span>，输出为 <span
+class="math inline">\(y\)</span>，则：</p>
+<p><span class="math display">\[y = m + n\]</span></p>
+<p>令 <span class="math inline">\(m = a + b,\ n = b\)</span> 则：</p>
+<p><span class="math display">\[y = (a + b) + b = a\]</span></p>
+<p><img src="chapters/images/3/1/3/xor_anti-interference.png" /></p>
+<p><span class="math inline">\(y\)</span> 始终等于 <span
+class="math inline">\(a\)</span>，与 <span
+class="math inline">\(b\)</span> 的值无关。</p>
+</div>
+<h5 id="与门">与门</h5>
+<p>与门是与逻辑，输入是其上所有普通灯状态，输出是与门状态，输入输出间关系满足与逻辑。其上有
+<span class="math inline">\(n\)</span> 个灯的与门代数式中有 <span
+class="math inline">\(n\)</span>
+项相乘，每一项都对应一个其上普通灯。当与门状态与输出用电器相反时，完整表达式会在与门表达式的基础上加
+1 取反。</p>
+<div class="admonition quote">
+<p><span class="math display">\[\mathrm{AndGate}(l_1,\cdots,l_n) =
+\prod_{j=1}^{n} l_j\]</span></p>
+<p><span class="math inline">\(n\)</span> 灯输入与门代数式。</p>
+</div>
+<p>将普通灯代数式带入与门代数式即可得到由普通灯和与门组成的全与门的代数式。</p>
+<div class="admonition quote">
+<p>设与门上第 <span class="math inline">\(j\)</span>
+个普通灯表达式如下：</p>
+<p><span class="math display">\[l_{1j} =
+\mathrm{Lamp}(s_{j1},\cdots,s_{jk_j};l_{0j})\]</span></p>
+<p>则全与门代数式如下：</p>
+<p><span class="math display">\[
+\mathrm{FullAndGate}
+\Big(
+    \{s_{ji}\}_{
+        \substack{
+            1\le j\le n \\
+            1\le i\le k_j
+        }
+    };
+    \{l_{0j}\}_{j=1}^{n}
+\Big) =
+\prod_{j=1}^{n}
+\left(
+    \sum_{i=1}^{k_j} s_{ji} + l_{0j}
+\right)
+\]</span></p>
+</div>
+<div class="admonition example">
+<div class="admonition question">
+<p>写出下列全与门的代数式：</p>
+<p><img src="chapters/images/3/1/3/and.png" /></p>
+</div>
+<ul>
+<li><p><span class="math inline">\(Y_1 = (A + B + 1)(A + B +
+C)A\)</span></p></li>
+<li><p><span class="math inline">\(Y_2 = (A + C)(A + B + C + 1)C +
+1\)</span></p></li>
+<li><p><span class="math inline">\(Y_3 = (B + 1)(A + B + C + 1)(C + 1) +
+1\)</span></p></li>
+<li><p><span class="math inline">\(Y_4 = B(A + B + C)(A +
+1)\)</span></p></li>
+</ul>
+</div>
+<p>如果代数式或加一后的代数式可因式分解，每一个因式里只含加法不含乘法，则其对应的逻辑可以只用一个与门实现。</p>
+<div class="admonition tip">
+<p>既代数式可以写成如下形式时，对应逻辑可以只用一个与门实现。</p>
+<p><span class="math display">\[
+f = \prod_{j=1}^{n} \left(\sum_{i} s_{ji} + l_{0j} \right)
+\quad
+\text{or}
+\quad
+f + 1 = \prod_{j=1}^{n} \left(\sum_{i} s_{ji} + l_{0j} \right)
+\]</span></p>
+</div>
+<p>能只使用一个逻辑门实现的逻辑被称为 <strong>简单逻辑</strong>。</p>
+<div class="admonition example">
+<p>或运算逻辑式：</p>
+<p><span class="math display">\[a \lor b = \lnot (\lnot a \land \lnot
+b)\]</span></p>
+<p>或运算代数式：</p>
+<p><span class="math display">\[ab + a + b\]</span></p>
+<div class="admonition quote">
+<p><span class="math display">\[
+\begin{array}{lll}
+    a \lor b
+    &amp; = &amp; \lnot (\lnot a \land \lnot b) \\
+    &amp; = &amp; (a + 1)(b + 1) + 1 \\
+    &amp; = &amp; ab + a + b + 1 + 1 \\
+    &amp; = &amp; ab + a + b
+\end{array}
+\]</span></p>
+</div>
+<p>或运算代数式可以使用因式分解将其写成因式里只含加法的形式：</p>
+<p><span class="math display">\[\begin{array}{lll} ab + a + b &amp; =
+&amp; ab + a + b + 1 - 1 \\ &amp; = &amp; (a + 1)(b + 1) + 1
+\end{array}\]</span></p>
+<p>所以或逻辑可以只用一个与门实现。</p>
+<div class="admonition tip">
+<p>这里利用了推论 <span class="math inline">\(1 = -1\)</span>。</p>
+</div>
+<p><img src="chapters/images/3/1/3/or.png" /></p>
+</div>
+<div class="admonition example">
+<p>逻辑式：</p>
+<p><span class="math display">\[(a \lor b) \land (c \lor d)\]</span></p>
+<p>代数式：</p>
+<p><span class="math display">\[(ab + a + b)(cd + c + d)\]</span></p>
+<p>代数式及代数式加一都不可将因式中的乘法消除，因此不可只用一个与门表示。</p>
+<p><img src="chapters/images/3/1/3/or_and.png" /></p>
+</div>
+<h5 id="异或门">异或门</h5>
+<p>异或门是独热逻辑，输入是其上所有普通灯状态，输出是异或门状态，输入输出间关系满足独热逻辑。其上有
+<span class="math inline">\(n\)</span> 个灯的异或门代数式中有 <span
+class="math inline">\(n\)</span>
+个逻辑变量，每一个逻辑变量都对应一个其上普通灯。当异或门状态与输出用电器相反时，完整表达式会在异或门表达式的基础上加
+1 取反。</p>
+<div class="admonition quote">
+<p>考虑三输入独热真值表：</p>
+<table>
+<thead>
+<tr class="header">
+<th>&gt;</th>
+<th>&gt;</th>
+<th>输入</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>B</td>
+<td>C</td>
+<td>Y</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>使用最小项之和写出逻辑式：</p>
+<p><span class="math display">\[\mathrm{OneHot}(a, b, c) = \lnot a \land
+\lnot b \land c \oplus \lnot a \land b \land \lnot c \oplus a \land
+\lnot b \land \lnot c\]</span></p>
+<p>转换为代数式：</p>
+<p><span class="math display">\[
+\begin{array}{lll}
+    \mathrm{OneHot}(a, b, c)
+    &amp; = &amp; (a + 1)(b + 1)c + (a + 1)b(c + 1) + a(b + 1)(c + 1) \\
+    &amp; = &amp; (ab + a + b + 1)c + \\
+    &amp; &amp; (ac + a + c + 1)b + \\
+    &amp; &amp; (bc + b + c + 1)a \\
+    &amp; = &amp; abc + ac + bc + c + \\
+    &amp; &amp; abc + ab + bc + b + \\
+    &amp; &amp; abc + ab + ac + a \\
+    &amp; = &amp; abc + a + b + c
+\end{array}
+\]</span></p>
+<div class="admonition tip">
+<p>这里利用了推论 <span class="math inline">\(a + a =
+0\)</span>，出现奇数次的项被保留，偶数次的项被消掉。</p>
+</div>
+<p>同理四输入独热的表达式为：</p>
+<p><span class="math display">\[\mathrm{OneHot}(a, b, c, d) = abc + abd
++ acd + bcd + a + b + c + d\]</span></p>
+<div class="admonition tip">
+<p>证明留给读者进行，同样是奇数次的项被保留，偶数次的项被消掉。</p>
+</div>
+</div>
+<div class="admonition quote">
+<p>由上述结论推广可得：</p>
+<p><span class="math display">\[
+\mathrm{XorGate}(l_1,\cdots,l_n) =
+\sum_{
+    \substack{
+        i \subseteq \{1,\cdots,n\} \\
+        |i| \equiv 1 \pmod{2}
+    }
+} \;
+\prod_{i \in i} l_i
+\]</span></p>
+<p><span class="math inline">\(n\)</span> 灯输入异或门代数式。</p>
+</div>
+<p>将普通灯代数式带入异或门代数式即可得到由普通灯和异或门组成的全异或门的代数式。</p>
+<div class="admonition quote">
+<p>设异或门上第 <span class="math inline">\(j\)</span>
+个普通灯表达式如下：</p>
+<p><span class="math display">\[l_{1j} =
+\mathrm{Lamp}(s_{j1},\cdots,s_{jk_j};l_{0j})\]</span></p>
+<p>则全异或门代数式如下：</p>
+<p><span class="math display">\[
+\mathrm{FullXorGate}
+\Big(
+    \{s_{ji}\}_{\substack{
+            1\le j\le n \\
+            1\le i\le k_j
+        }
+    };
+    \{l_{0j}\}_{j=1}^{n}
+\Big) \\ =
+\sum_{
+    \substack{
+            I \subseteq \{1, \cdots, n\} \\
+            |I| \equiv 1 \pmod{2}
+        }
+    } \;
+\prod_{j \in I}
+\left(
+    \sum_{i=1}^{k_j} s_{ji} + l_{0j}
+\right)
+\]</span></p>
+</div>
+<div class="admonition tip">
+<p>同理，如果代数式可以写成如下形式时，对应逻辑可以只用一个异或门实现。</p>
+<p><span class="math display">\[
+f = \sum_{
+    \substack{
+        I \subseteq \{1,\cdots,n\} \\
+        |I| \equiv 1 \pmod{2}
+    }
+} \;
+\prod_{i \in I}
+\left(
+    \sum_{i=1}^{k_j} s_{ji} + l_{0j}
+\right) \\
+\text{or} \\
+f + 1 = \sum_{
+    \substack{
+        I \subseteq \{1,\cdots,n\} \\
+        |I| \equiv 1 \pmod{2}
+    }
+} \;
+\prod_{i \in I}
+\left(
+    \sum_{i=1}^{k_j} s_{ji} + l_{0j}
+\right)
+\]</span></p>
+</div>
+<div class="admonition example">
+<div class="admonition question">
+<p>写出下列全异或门的代数式：</p>
+<p><img src="chapters/images/3/1/3/xor.png" /></p>
+</div>
+<p>三灯异或门的代数式为：</p>
+<p><span class="math display">\[f = xyz + x + y + z\]</span></p>
+<ul>
+<li><p><span class="math inline">\(y_1 = (a + b + 1)(a + b + c)b + (a +
+b + 1) + (a + b + c) + b\)</span> <span class="math inline">\(x = a + b
++ 1,\ y = a + b + c,\ z = b\)</span></p></li>
+<li><p><span class="math inline">\(y_2 = (b + 1)(a + b + c + 1)(c + 1) +
+(b + 1) + (a + b + c + 1) + (c + 1) + 1\)</span> <span
+class="math inline">\(x = b + 1,\ y = a + b + c + 1,\ z = c +
+1\)</span></p></li>
+<li><p><span class="math inline">\(y_3 = b(a + b + c + 1)a + b + (a + b
++ c + 1) + a + 1\)</span> <span class="math inline">\(x = b,\ y = a + b
++ c + 1,\ z = a\)</span></p></li>
+<li><p><span class="math inline">\(y_4 = a(a + b + c)(a + c + 1) + a +
+(a + b + c) + (a + c + 1) + 1\)</span> <span class="math inline">\(x =
+a,\ y = a + b + c,\ z = a + c + 1\)</span></p></li>
+</ul>
+</div>
+<div class="admonition example">
+<p>观察下方电路：</p>
+<p><img src="chapters/images/3/1/3/xor_to_and.png" /></p>
+<p>写出代数式为：</p>
+<p><span class="math display">\[(abc + a + b + c) + a + b + c =
+abc\]</span></p>
+<p>满足与逻辑。</p>
+<p>观察下方电路：</p>
+<p><img src="chapters/images/3/1/3/and_to_xor.png" /></p>
+<p>写出代数式为：</p>
+<p><span class="math display">\[(abc) + a + b + c = abc + a + b +
+c\]</span></p>
+<p>满足独热逻辑。</p>
+<p>可见可以用与门实现异或门的独热逻辑，也可以用异或门实现与门的与逻辑。</p>
+</div>
+<div class="admonition example">
+<p>三灯异或门的代数式为：</p>
+<p><span class="math display">\[f = abc + a + b + c\]</span></p>
+<p>令逻辑灯 <span class="math inline">\(a = x + y,\ b = x + y,\ c =
+y\)</span>，则：</p>
+<p><span class="math display">\[f = (x + y)(x + y)y + (x + y) + (x + y)
++ y = xy\]</span></p>
+<p>满足二输入与逻辑。</p>
+<p><img src="chapters/images/3/1/3/3_xor_to_2_and.png" /></p>
+</div>
+<div class="admonition example">
+<p>三灯异或门的代数式为：</p>
+<p><span class="math display">\[f = abc + a + b + c\]</span></p>
+<p>令逻辑灯 <span class="math inline">\(a = x + 1,\ b = y + 1,\ c =
+1\)</span>，则：</p>
+<p><span class="math display">\[f = (x + 1)(y + 1)1 + (x + 1) + (y + 1)
++ 1 = xy\]</span></p>
+<p>满足二输入与逻辑。</p>
+<p><img src="chapters/images/3/1/3/3_xor_to_2_and_2.png" /></p>
+</div>
+<div class="admonition info">
+<p>易证：</p>
+<p><span class="math display">\[\mathrm{OneHot}(0, a_1, a_2, \cdots,
+a_n) = \mathrm{OneHot}(a_1, a_2, \cdots, a_n)\]</span></p>
+<p><span class="math display">\[\mathrm{OneHot}(1, a_1, a_2, \cdots,
+a_n) = \lnot a_1 \land \lnot a_2 \land \cdots \land \lnot
+a_n\]</span></p>
+</div>
+<div class="admonition example">
+<p>三灯异或门的代数式为：</p>
+<p><span class="math display">\[f = abc + a + b + c\]</span></p>
+<p>令逻辑灯 <span class="math inline">\(a = x,\ b = y,\ c = 1,\ z = f +
+1\)</span>，则：</p>
+<p><span class="math display">\[z = (xy1 + x + y + 1) + 1 = xy + x +
+y\]</span></p>
+<p>满足二输入或逻辑。</p>
+<p><img src="chapters/images/3/1/3/3_xor_to_2_or.png" /></p>
+</div>
+<h4 id="逻辑函数">3.1.4 逻辑函数</h4>
+<h5 id="最小项">最小项</h5>
+<p>任意逻辑函数可以被写成积之和的形式。如果乘积项中每个逻辑变量只出现一次，则该乘积项被称为
+<strong>最小项</strong>。每一个最小项对应一个让逻辑函数输出为真的输入情况，而每个让逻辑函数输出为真的输入情况也可以对应写作一个最小项。</p>
+<p>对于一个有 <span class="math inline">\(j\)</span>
+种输入输出为真的逻辑函数，其逻辑表达式可以被写作 <span
+class="math inline">\(j\)</span> 个最小项求和的形式，被称为
+<strong>最小项之和</strong>。和真值表中输出为 1 的数量一样，<span
+class="math inline">\(j\)</span> 最小为 <span
+class="math inline">\(0\)</span>，最大为 <span
+class="math inline">\(2^n\)</span>，其中 <span
+class="math inline">\(n\)</span> 为输入的逻辑变量数。</p>
+<div class="admonition info">
+<p>最小项可以被简写为 <span class="math inline">\(m_i\)</span>
+的形式，其中 <span class="math inline">\(i\)</span>
+代表该最小项输出为真时对应输入转换为十进制的值。</p>
+<div class="admonition example">
+<p>三输入变量对应的最小项和简写如下：</p>
+<table>
+<thead>
+<tr class="header">
+<th>&gt;</th>
+<th>&gt;</th>
+<th>输入</th>
+<th>最小项</th>
+<th>简写</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td><span class="math inline">\(\lnot a \cdot \lnot b \cdot \lnot
+c\)</span></td>
+<td><span class="math inline">\(m_0\)</span></td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td><span class="math inline">\(\lnot a \cdot \lnot b \cdot
+c\)</span></td>
+<td><span class="math inline">\(m_1\)</span></td>
+</tr>
+<tr class="odd">
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td><span class="math inline">\(\lnot a \cdot b \cdot \lnot
+c\)</span></td>
+<td><span class="math inline">\(m_2\)</span></td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td><span class="math inline">\(\lnot a \cdot b \cdot c\)</span></td>
+<td><span class="math inline">\(m_3\)</span></td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td><span class="math inline">\(a \cdot \lnot b \cdot \lnot
+c\)</span></td>
+<td><span class="math inline">\(m_4\)</span></td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td><span class="math inline">\(a \cdot \lnot b \cdot c\)</span></td>
+<td><span class="math inline">\(m_5\)</span></td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td><span class="math inline">\(a \cdot b \cdot \lnot c\)</span></td>
+<td><span class="math inline">\(m_6\)</span></td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td><span class="math inline">\(a \cdot b \cdot c\)</span></td>
+<td><span class="math inline">\(m_7\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>最小项之和可以被写为形如 <span class="math inline">\(m_i + m_j +
+\cdots + m_k = \sum_{}^{} m(i, j, \cdots, k)\)</span> 的形式。</p>
+<div class="admonition example">
+<p>对于下表所示的三输入逻辑函数：</p>
+<table>
+<thead>
+<tr class="header">
+<th>&gt;</th>
+<th>&gt;</th>
+<th>输入</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>a</td>
+<td>b</td>
+<td>c</td>
+<td>y</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>其最小项之和的形式可以写为：</p>
+<p><span class="math display">\[\lnot a \cdot b \cdot c + a \cdot \lnot
+b \cdot c + a \cdot b \cdot \lnot c + a \cdot b \cdot c\]</span></p>
+<p>也可以简写为：</p>
+<p><span class="math display">\[m_3 + m_5 + m_6 + m_7 = \sum_{}^{} m(3,
+5, 6, 7)\]</span></p>
+</div>
+</div>
+<p>通常我们已知逻辑函数，需要找到满足逻辑函数的电路表示。此时我们需要先将逻辑函数写成积之和，也就是最小项之和的形式，然后将积之和转换为和之积，以满足与门或异或门的格式。但利用运算律和因数分解进行转换都是比较困难的。</p>
+<h5 id="字符串">字符串</h5>
+<p>在逻辑表达式中，逻辑量也被称为
+<strong>字母</strong>，而若干字母使用加法连接而成的表达式被称为
+<strong>字符串</strong>，简称 <strong>串</strong>。</p>
+<p>由 0 个字符连接成的表达式记作 0，称为 <strong>空串</strong>；0 和 1
+两个串称为 <strong>平凡串</strong>；除 0 和 1 外的串被称为
+<strong>非平凡串</strong>。如果两个串恒等（等价），那么这两个串相同。</p>
+<div class="admonition info">
+<p>字母顺序不同的串仍等价：</p>
+<p><span class="math display">\[a + b = b + a\]</span></p>
+<p>连接 1 相当于对字母取反：</p>
+<p><span class="math display">\[a + 1 = \lnot a\]</span></p>
+<p>连接 0 可以直接消掉：</p>
+<p><span class="math display">\[a + 0 = a\]</span></p>
+<p>一对重复字母可以抵消：</p>
+<p><span class="math display">\[a + a = 0\]</span></p>
+</div>
+<p>对于 <span class="math inline">\(n\)</span> 个字母，可以组成 <span
+class="math inline">\(2^n\)</span>
+个不同的串，每个字母在串中都有存在和不存在两种可能。</p>
+<div class="admonition example">
+<p>由字母 <span class="math inline">\(1\)</span>、<span
+class="math inline">\(a\)</span>、<span class="math inline">\(b\)</span>
+组成的不同的串有 8 个：<span class="math inline">\(0\)</span>、<span
+class="math inline">\(1\)</span>、<span
+class="math inline">\(a\)</span>、<span
+class="math inline">\(b\)</span>、<span class="math inline">\(a +
+b\)</span>、<span class="math inline">\(a + 1\)</span>、<span
+class="math inline">\(b + 1\)</span>、<span class="math inline">\(a + b
++ 1\)</span>。</p>
+<div class="admonition tip">
+<p>一个串中可以包含重复的字母，但是由于性质 <span
+class="math inline">\(a + a = 0\)</span> 和 <span
+class="math inline">\(a + 0 = a\)</span>，一对重复字母可以直接抵消。</p>
+</div>
+</div>
+<p>给定一组串 <span class="math inline">\(s_1\)</span>、<span
+class="math inline">\(s_2\)</span>、<span
+class="math inline">\(\cdot\)</span>、<span
+class="math inline">\(s_r\)</span>，任选其中若干串（至少一个）求和，得到的串称为这组串的一个
+<strong>线性组合</strong>。</p>
+<p>如果一组非平凡串存在至少一个线性组合为平凡串（0 或
+1），那么我们称这组非平凡串
+<strong>线性相关</strong>；否则如果一组非平凡串的全部线性组合都是非平凡串，那么我们称这组非平凡串
+<strong>线性无关</strong>。一组非平凡串的最大线性无关的子集的大小称为这组非平凡串的
+<strong>秩</strong>。</p>
+<div class="admonition example">
+<p>考虑三个串 <span class="math inline">\(a + b\)</span>、<span
+class="math inline">\(a + b + c\)</span>、<span class="math inline">\(a
++ b + c + d\)</span>。</p>
+<p>令</p>
+<p><span class="math inline">\(x = a + b\)</span> <span
+class="math inline">\(y = a + b + c\)</span> <span
+class="math inline">\(z = a + b + c + d\)</span></p>
+<p>那么 <span class="math inline">\(x\)</span>、<span
+class="math inline">\(y\)</span>、<span class="math inline">\(z\)</span>
+的所有不同线性组合为：</p>
+<p><span class="math inline">\(x = a + b\)</span> <span
+class="math inline">\(y = a + b + c\)</span> <span
+class="math inline">\(z = a + b + c + d\)</span> <span
+class="math inline">\(x + y = c\)</span> <span class="math inline">\(x +
+z = c + d\)</span> <span class="math inline">\(y + z = d\)</span> <span
+class="math inline">\(x + y + z = a + b + d\)</span></p>
+<p>所有线性组合都是非平凡串，所以 <span class="math inline">\(a +
+b\)</span>、<span class="math inline">\(a + b + c\)</span>、<span
+class="math inline">\(a + b + c + d\)</span> 线性无关，<span
+class="math inline">\(\{a + b, a + b + c, a + b + c + d\}\)</span>
+的最大线性无关子集就是它本身，其秩为 3。</p>
+</div>
+<div class="admonition example">
+<p>考虑三个串 <span class="math inline">\(a + b\)</span>、<span
+class="math inline">\(b + c\)</span>、<span class="math inline">\(a +
+c\)</span>。</p>
+<p>令</p>
+<p><span class="math inline">\(x = a + b\)</span> <span
+class="math inline">\(y = b + c\)</span> <span class="math inline">\(z =
+a + c\)</span></p>
+<p>那么 <span class="math inline">\(x\)</span>、<span
+class="math inline">\(y\)</span>、<span class="math inline">\(z\)</span>
+的所有不同线性组合为：</p>
+<p><span class="math inline">\(x = a + b\)</span> <span
+class="math inline">\(y = b + c\)</span> <span class="math inline">\(z =
+a + c\)</span> <span class="math inline">\(x + y = a + c\)</span> <span
+class="math inline">\(x + z = b + c\)</span> <span
+class="math inline">\(y + z = a + b\)</span> <span
+class="math inline">\(x + y + z = 0\)</span></p>
+<div class="admonition tip">
+<p>注意到：</p>
+<p><span class="math inline">\(x = y + z = a + b\)</span> <span
+class="math inline">\(y = x + z = b + c\)</span> <span
+class="math inline">\(z = x + y = a + c\)</span></p>
+</div>
+<p>其中 <span class="math inline">\(x + y + z = 0\)</span>
+是平凡串，所以 <span class="math inline">\(a + b\)</span>、<span
+class="math inline">\(b + c\)</span>、<span class="math inline">\(a +
+c\)</span> 线性相关。</p>
+<p><span class="math inline">\(\{a + b, b + c, a + c\}\)</span>
+的一个子集是 <span class="math inline">\(\{a + b, b + c\}\)</span></p>
+<p>令</p>
+<p><span class="math inline">\(x = a + b\)</span> <span
+class="math inline">\(y = b + c\)</span></p>
+<p>那么 <span class="math inline">\(x\)</span>、<span
+class="math inline">\(y\)</span> 的所有不同线性组合为：</p>
+<p><span class="math inline">\(x = a + b\)</span> <span
+class="math inline">\(y = b + c\)</span> <span class="math inline">\(x +
+y = a + c\)</span></p>
+<p>都是非平凡串，所以 <span class="math inline">\(a + b\)</span>、<span
+class="math inline">\(b + c\)</span> 线性无关。<span
+class="math inline">\(\{a + b, b + c\}\)</span> 是 <span
+class="math inline">\(\{a + b, b + c, a + c\}\)</span>
+的其中一个最大线性无关子集，大小为 2。</p>
+<p>则 <span class="math inline">\(a + b\)</span>、<span
+class="math inline">\(b + c\)</span>、<span class="math inline">\(a +
+c\)</span> 的秩为 2。</p>
+</div>
+<p>记一组串的秩为 <span
+class="math inline">\(r\)</span>，那么这组串拥有的不同非平凡线性组合数量为
+<span class="math inline">\(2^r -
+1\)</span>。反之，一组串拥有的不同非平凡线性组合数量一定有形式 <span
+class="math inline">\(2^r - 1\)</span>，并且在该形式下这组串的秩为 <span
+class="math inline">\(r\)</span>。</p>
+<div class="admonition example">
+<p>考虑三个串：<span class="math inline">\(a + b\)</span>、<span
+class="math inline">\(a + b + c\)</span>、<span class="math inline">\(a
++ b + c + d\)</span>，其秩为 3，则其有 <span class="math inline">\(2^3 -
+1 = 7\)</span> 个不同的非线性组合：<span class="math inline">\(a +
+b\)</span>、<span class="math inline">\(a + b + c\)</span>、<span
+class="math inline">\(a + b + c + d\)</span>、<span
+class="math inline">\(c\)</span>、<span class="math inline">\(c +
+d\)</span>、<span class="math inline">\(d\)</span>、<span
+class="math inline">\(a + b + d\)</span>；对于有 7
+个不同的非线性组合的多个串，其秩为 <span class="math inline">\(\log_2
+(7+1) = 3\)</span>。</p>
+<p>考虑三个串：<span class="math inline">\(a + b\)</span>、<span
+class="math inline">\(b + c\)</span>、<span class="math inline">\(a +
+c\)</span>，其秩为 2，则其有 <span class="math inline">\(2^2 - 1 =
+3\)</span> 个不同的非线性组合：<span class="math inline">\(a +
+b\)</span>、<span class="math inline">\(b + c\)</span>、<span
+class="math inline">\(a + c\)</span>；对于有 3
+个不同的非线性组合的多个串，其秩为 <span
+class="math inline">\(\log_2(3+1) = 2\)</span>。</p>
+</div>
+<div class="admonition info">
+<p>秩为 <span class="math inline">\(r\)</span>
+的一组互不相同的非平凡串至多有 <span class="math inline">\(2^r -
+1\)</span> 个。<span class="math inline">\(n\)</span>
+个互不相同的非平凡串的秩至少为 <span class="math inline">\(\lceil\log_2
+(n+1)\rceil\)</span>。</p>
+<div class="admonition example">
+<p>对于秩为 3 的一组互不相同的非平凡串，如果用字母 <span
+class="math inline">\(a\)</span>、<span
+class="math inline">\(b\)</span>、<span class="math inline">\(c\)</span>
+表示，最多可以写出：<span class="math inline">\(a\)</span>、<span
+class="math inline">\(b\)</span>、<span
+class="math inline">\(c\)</span>、<span class="math inline">\(a +
+b\)</span>、<span class="math inline">\(a + c\)</span>、<span
+class="math inline">\(b + c\)</span>、<span class="math inline">\(a + b
++ c\)</span> 七个，也就是三个字母所有可能组成的串去掉 <span
+class="math inline">\(0\)</span> 剩下的情况。其中任选两个串，其秩至少为
+<span class="math inline">\(\lceil\log_2 (2+1)\rceil =
+2\)</span>，任选三个串，其秩至少为 <span
+class="math inline">\(\lceil\log_2 (3+1)\rceil = 2\)</span>。</p>
+</div>
+</div>
+<h5 id="单输入单普通灯方程">单输入单普通灯方程</h5>
+<div class="admonition example">
+<div class="admonition question">
+<p>对于逻辑函数 <span class="math inline">\(f(a, b,
+c)\)</span>，当且仅当 <span class="math inline">\(a, b, c = 1, 0,
+0\)</span> 或 <span class="math inline">\(0, 1, 1\)</span> 时取值为
+1；其余情况取值为 0，求函数 <span class="math inline">\(f\)</span>
+的单与门表示。</p>
+</div>
+<p>对于三个字母 <span class="math inline">\(a\)</span>、<span
+class="math inline">\(b\)</span>、<span class="math inline">\(c\)</span>
+组成的非平凡串，有 <span class="math inline">\(a; b; c; a + b; a + c; b
++ c; a + b + c\)</span> 七种情况。对于输入 <span
+class="math inline">\(a, b, c = 1, 0, 0\)</span> 或 <span
+class="math inline">\(0, 1, 1\)</span>，总有线性无关串 <span
+class="math inline">\(a + b\)</span> 和 <span class="math inline">\(b +
+c + 1\)</span> 同时为 1。若 <span class="math inline">\(f\)</span>
+可以分解为线性因式的乘积，那么这些线性因式在所有使 <span
+class="math inline">\(f = 1\)</span> 的最小项上，都必须取值为
+1，因此，因式一定取自这些在最小项集合上恒等为 1 的非平凡串。不妨构造
+<span class="math inline">\(f = (a + b)(b + c +
+1)\)</span>，经过验证，符合题意。</p>
+<p><img src="chapters/images/3/1/4/and_example_1.png" /></p>
+<div class="admonition tip">
+<p>当变量数量较少且函数可以被分解为线性因式时，我们可以通过在给定最小项集合上，寻找一组线性无关且恒等为
+1 的非平凡串来得到可能的因式。</p>
+<p>不过这种方法依赖枚举与观察，接下来将介绍更通用的方法。</p>
+</div>
+</div>
+<p>考虑前述 <span class="math inline">\(m\)</span> 输入，初始状态 <span
+class="math inline">\(l_0\)</span> 的普通灯通式：</p>
+<p><span class="math display">\[\mathrm{Lamp}(s_1,\cdots,s_m;l_0) =
+\sum_{i=1}^{m} s_i + l_0\]</span></p>
+<p>当输入的电源并没有全部连接到逻辑灯时，引入表示输入电源 <span
+class="math inline">\(s_i\)</span> 与逻辑灯的电线连接关系的项 <span
+class="math inline">\(w_i\)</span>，当该电源通过电线连接到逻辑灯时，<span
+class="math inline">\(w_i =
+1\)</span>，当该电源没有通过电线连接到逻辑灯时，<span
+class="math inline">\(w_i = 0\)</span>。</p>
+<p>设有 <span class="math inline">\(n\)</span>
+个输入电源，普通灯的初始状态 <span
+class="math inline">\(l_0\)</span>，普通灯的最终状态 <span
+class="math inline">\(l_1\)</span>。</p>
+<p>则该普通灯终态表达式可以写为：</p>
+<p><span class="math display">\[\sum_{i=1}^{n} w_i s_i + l_0 =
+l_1\]</span></p>
+<p>对于这样的表达式，我们可以使用向量简化表示。</p>
+<p>设电线连接向量为 <span class="math inline">\(\mathbf{w}\)</span></p>
+<p><span class="math display">\[\mathbf{w} = (w_1, \cdots,
+w_n)\]</span></p>
+<p>设电源状态向量为 <span class="math inline">\(\mathbf{s}\)</span></p>
+<p><span class="math display">\[\mathbf{s} = (s_1, \cdots,
+s_n)\]</span></p>
+<div class="admonition tip">
+<p><span class="math inline">\(\mathbf{s}\)</span> 和 <span
+class="math inline">\(\mathbf{w}\)</span> 的维度相同，都是 <span
+class="math inline">\(n\)</span>。标量、向量、矩阵进行乘法和加法运算时，要求对应维度相同。</p>
+</div>
+<p>则该普通灯在输入一个向量后的终态表达式为：</p>
+<p><span class="math display">\[\mathbf{w}\, \mathbf{s}^{\mathrm{T}} +
+l_0 = l_1\]</span></p>
+<p>既：</p>
+<p><span class="math display">\[
+\begin{pmatrix}
+    w_1 &amp; w_2 &amp; \cdots &amp; w_n
+\end{pmatrix}
+\begin{pmatrix}
+    s_1 \\ s_2 \\ \vdots \\ s_n
+\end{pmatrix} + l_0 = l_1
+\]</span></p>
+<p><span class="math display">\[w_1 s_1 + w_2 s_2 + \cdots + w_n s_n +
+l_0 = l_1\]</span></p>
+<div class="admonition example">
+<div class="admonition question">
+<p>考虑以下三输入普通灯：</p>
+<p><img src="chapters/images/3/1/4/and_example_2_1.png" /></p>
+<p>根据电线接法和输入状态，列出普通灯的表达式并求得普通灯终态：</p>
+<p><img src="chapters/images/3/1/4/and_example_2_2.png" /></p>
+</div>
+<p><span class="math inline">\(\mathbf{w}_1 = (1, 0, 1);\ \mathbf{s}_1 =
+(1, 1, 0);\ l_{01} = 0;\)</span></p>
+$ l_{11} = _1, <em>1^{} + l</em>{01} =
+<span class="math display">\[\begin{pmatrix}
+    1 &amp; 0 &amp; 1
+\end{pmatrix}
+\begin{pmatrix}
+    1 \\ 1 \\ 0
+\end{pmatrix}\]</span>
+<ul>
+<li>0 = 1 + 0 = 1 $</li>
+</ul>
+<p><span class="math inline">\(\mathbf{w}_2 = (0, 1, 1);\ \mathbf{s}_1 =
+(1, 0, 1);\ l_{02} = 1;\)</span></p>
+$ l_{12} = _2, <em>2^{} + l</em>{02} =
+<span class="math display">\[\begin{pmatrix}
+0 &amp; 1 &amp; 1
+\end{pmatrix}
+\begin{pmatrix}
+    1 \\ 0 \\ 1
+\end{pmatrix}\]</span>
+<ul>
+<li>1 = 1 + 1 = 0 $</li>
+</ul>
+<p><span class="math inline">\(\mathbf{w}_3 = (1, 0, 0);\ \mathbf{s}_1 =
+(0, 1, 1);\ l_{03} = 1;\)</span></p>
+$ l_{13} = _3, <em>3^{} + l</em>{03} =
+<span class="math display">\[\begin{pmatrix}
+    1 &amp; 0 &amp; 0
+\end{pmatrix}
+\begin{pmatrix}
+    0 \\ 1 \\ 1
+\end{pmatrix}\]</span>
+<ul>
+<li>1 = 0 + 1 = 1 $</li>
+</ul>
+</div>
+<h5 id="单输入多普通灯方程">单输入多普通灯方程</h5>
+<p>设全普通门上有 <span class="math inline">\(m\)</span> 个普通灯，有
+<span class="math inline">\(n\)</span> 个输入电源。其中第 <span
+class="math inline">\(j\)</span> 个逻辑灯初始状态为 <span
+class="math inline">\(l_{j0}\)</span>，电线连接为 <span
+class="math inline">\(\mathbf{w}_j\)</span>，初态 <span
+class="math inline">\(l_{0j}\)</span>，终态 <span
+class="math inline">\(l_{1j}\)</span>，则其表达式为：</p>
+<p><span class="math display">\[l_{1j} =
+\mathbf{w}_j\,\mathbf{s}^{\mathrm{T}} + l_{0j}\]</span></p>
+<p>对于多个标量，我们可以将它们合并为向量表示；对于多个向量，我们可以将它们合并为矩阵表示。</p>
+<p>设电线连接矩阵为 <span class="math inline">\(\mathbf{W}\)</span></p>
+<p><span class="math display">\[
+\mathbf{W} =
+\begin{pmatrix}
+    \mathbf{w}_1 \\
+    \mathbf{w}_2 \\
+    \vdots \\
+    \mathbf{w}_m
+\end{pmatrix} =
+\begin{pmatrix}
+    w_{11} &amp; w_{12} &amp; \cdots &amp; w_{1n} \\
+    w_{21} &amp; w_{22} &amp; \cdots &amp; w_{2n} \\
+    \vdots &amp; \vdots &amp; &amp; \vdots \\
+    w_{m1} &amp; w_{m2} &amp; \cdots &amp; w_{mn}
+\end{pmatrix}\]</span></p>
+<p>设电源状态向量为 <span class="math inline">\(\mathbf{s}\)</span></p>
+<p><span class="math display">\[\mathbf{s} = (s_1, \cdots,
+s_n)\]</span></p>
+<p>设逻辑灯初态向量为 <span
+class="math inline">\(\mathbf{l}_0\)</span></p>
+<p><span class="math display">\[\mathbf{l}_0 = (l_{01}, \cdots,
+l_{0m})\]</span></p>
+<p>设逻辑灯终态向量为 <span
+class="math inline">\(\mathbf{l}_1\)</span></p>
+<p><span class="math display">\[\mathbf{l}_1 = (l_{11}, \cdots,
+l_{1m})\]</span></p>
+<p>则多个普通灯在输入一个向量后的终态表达式为</p>
+<p><span class="math display">\[\mathbf{W}\, \mathbf{s}^{\mathrm{T}} +
+\mathbf{l}_0^{\mathrm{T}} = \mathbf{l}_1^{\mathrm{T}}\]</span></p>
+<p>既：</p>
+<p><span class="math display">\[
+\begin{pmatrix}
+    w_{11} &amp; w_{12} &amp; \cdots &amp; w_{1n} \\
+    w_{21} &amp; w_{22} &amp; \cdots &amp; w_{2n} \\
+    \vdots &amp; \vdots &amp; &amp; \vdots \\
+    w_{m1} &amp; w_{m2} &amp; \cdots &amp; w_{mn}
+\end{pmatrix}
+\begin{pmatrix}
+    s_1 \\ s_2 \\ \vdots \\ s_n
+\end{pmatrix} +
+\begin{pmatrix}
+    l_{01} \\ l_{02} \\ \vdots \\ l_{0m}
+\end{pmatrix} =
+\begin{pmatrix}
+    l_{11} \\ l_{12} \\ \vdots \\ l_{1m}
+\end{pmatrix}
+\]</span></p>
+<div class="admonition example">
+<div class="admonition question">
+<p>考虑以下三输入全普通门上的逻辑灯：</p>
+<p><img src="chapters/images/3/1/4/and_example_3_1.png" /></p>
+<p>根据电线接法和输入状态，列出全部普通灯的表达式并求得普通灯终态：</p>
+<p><img src="chapters/images/3/1/4/and_example_3_2.png" /></p>
+</div>
+$ _1 =
+<span class="math display">\[\begin{pmatrix}
+    1 &amp; 1 &amp; 0 \\
+    0 &amp; 1 &amp; 1
+\end{pmatrix}\]</span>
+<p>;  <em>1 = (0, 1, 1);  </em>{01} = (1, 1); $</p>
+$ _{11} = _1, <em>1^{} + </em>{01}^{} =
+<span class="math display">\[\begin{pmatrix}
+    1 &amp; 1 &amp; 0 \\
+    0 &amp; 1 &amp; 1
+\end{pmatrix}\]</span>
+,
+<span class="math display">\[\begin{pmatrix}
+    0 \\ 1 \\ 1
+\end{pmatrix}\]</span>
+<ul>
+<li><span class="math display">\[\begin{pmatrix}
+  1 \\ 1
+\end{pmatrix}\]</span>
+=
+<span class="math display">\[\begin{pmatrix}
+  1 \\ 0
+\end{pmatrix}\]</span>
+<ul>
+<li><span class="math display">\[\begin{pmatrix}
+1 \\ 1
+\end{pmatrix}\]</span>
+=
+<span class="math display">\[\begin{pmatrix}
+0 \\ 1
+\end{pmatrix}\]</span>
+$</li>
+</ul></li>
+</ul>
+$ _2 =
+<span class="math display">\[\begin{pmatrix}
+    1 &amp; 1 &amp; 0 \\
+    0 &amp; 0 &amp; 1
+\end{pmatrix}\]</span>
+<p>;  <em>1 = (1, 0, 1);  </em>{01} = (0, 1); $</p>
+$ _{12} = _2, <em>2^{} + </em>{02}^{} =
+<span class="math display">\[\begin{pmatrix}
+    1 &amp; 1 &amp; 0 \\
+    0 &amp; 0 &amp; 1
+\end{pmatrix}\]</span>
+,
+<span class="math display">\[\begin{pmatrix}
+    1 \\ 0 \\ 1
+\end{pmatrix}\]</span>
+<ul>
+<li><span class="math display">\[\begin{pmatrix}
+  0 \\ 1
+\end{pmatrix}\]</span>
+=
+<span class="math display">\[\begin{pmatrix}
+  1 \\ 1
+\end{pmatrix}\]</span>
+<ul>
+<li><span class="math display">\[\begin{pmatrix}
+0 \\ 1
+\end{pmatrix}\]</span>
+=
+<span class="math display">\[\begin{pmatrix}
+1 \\ 0
+\end{pmatrix}\]</span>
+$</li>
+</ul></li>
+</ul>
+</div>
+<p>与门在其上全部普通灯点亮时点亮；异或门在其上只有一个普通灯点亮时点亮。也就是说，与门在输入最小项时，其上逻辑灯终态向量全部元素为
+1；异或门在输入最小项时，其上逻辑灯终态向量中有且仅有一个元素是
+1。而对于非最小项的输入，逻辑灯终态是其余情况，不会满足逻辑门点亮条件，无需关注。</p>
+<div class="admonition quote">
+<p><span class="math display">\[\mathbf{W}\, \mathbf{s}^{\mathrm{T}} +
+\mathbf{l}_0^{\mathrm{T}} = \mathbf{l}_1^{\mathrm{T}}\]</span></p>
+<p>当逻辑门为与门，且输入最小项时，逻辑灯终态向量元素全部为 1。</p>
+<p><span class="math display">\[\mathbf{l}_1 = (1, 1, \cdots,
+1)\]</span></p>
+<p>当逻辑门为异或门，且输入最小项时，逻辑灯终态向量元素中只有一个
+1。</p>
+<p><span class="math display">\[\mathbf{l}_1 = (0, 0, \cdots, 0, 1, 0,
+\cdots, 0)\]</span></p>
+</div>
+<div class="admonition example">
+<div class="admonition question">
+<p>将该电路使用最小项之和的形式表示：</p>
+<p><img src="chapters/images/3/1/4/and_example_4.png" /></p>
+</div>
+<p>由图可得逻辑灯初态向量为 <span class="math inline">\(\mathbf{l}_0 =
+(0,
+1)\)</span>，逻辑门为与门，输入为最小项时输出逻辑灯全亮，所以逻辑灯终态向量为
+<span class="math inline">\(\mathbf{l}_1 = (1, 1)\)</span>，接线矩阵为
+<span class="math inline">\(\mathbf{W} = \begin{pmatrix} 1 &amp; 1 &amp;
+0 \\ 0 &amp; 1 &amp; 1 \end{pmatrix}\)</span>。</p>
+<p>设输入最小项向量为 <span class="math inline">\(\mathbf{s} = (a, b,
+c)\)</span>，则</p>
+<p><span class="math display">\[\mathbf{W}\, \mathbf{s}^{\mathrm{T}} +
+\mathbf{l}_0^{\mathrm{T}} = \mathbf{l}_1^{\mathrm{T}}\]</span></p>
+<p>带入可得</p>
+<p><span class="math display">\[
+\begin{pmatrix}
+    1 &amp; 1 &amp; 0 \\
+    0 &amp; 1 &amp; 1
+\end{pmatrix}\,
+\begin{pmatrix}
+    a \\ b \\ c
+\end{pmatrix} +
+\begin{pmatrix}
+    0 \\ 1
+\end{pmatrix} =
+\begin{pmatrix}
+    1 \\ 1
+\end{pmatrix}
+\]</span></p>
+<p>化简得</p>
+<p><span class="math display">\[
+\left\{
+    \begin{aligned}
+        a + b = 1 \\
+        b + c = 0
+    \end{aligned}
+\right.
+\]</span></p>
+<p>当 <span class="math inline">\(a = 0\)</span> 时，<span
+class="math inline">\(b = 1\)</span>，<span class="math inline">\(c =
+1\)</span>；</p>
+<p>当 <span class="math inline">\(a = 1\)</span> 时，<span
+class="math inline">\(b = 0\)</span>，<span class="math inline">\(c =
+0\)</span>。</p>
+<p>综上，该电路有两个最小项，分别是 <span
+class="math inline">\(011\)</span> 和 <span
+class="math inline">\(100\)</span>。</p>
+</div>
+<h5 id="多输入多普通灯方程">多输入多普通灯方程</h5>
+<p>设全普通门上有 <span class="math inline">\(m\)</span> 个普通灯，有
+<span class="math inline">\(n\)</span> 个输入电源，有 <span
+class="math inline">\(p\)</span> 个输入向量。其中第 <span
+class="math inline">\(k\)</span> 个输入向量为 <span
+class="math inline">\(\mathbf{s}_{k}\)</span>，对应的逻辑灯初态向量为
+<span class="math inline">\(\mathbf{l}_{0k}\)</span>，逻辑灯终态向量为
+<span class="math inline">\(\mathbf{l}_{1k}\)</span>。</p>
+<p>同理，当有多个输入向量时，我们也可以将它们合并为矩阵。</p>
+<p>设电源状态矩阵为 <span class="math inline">\(\mathbf{S}\)</span></p>
+<p><span class="math display">\[
+\mathbf{S} =
+\begin{pmatrix}
+    \mathbf{s}_1 \\
+    \mathbf{s}_2 \\
+    \vdots \\
+    \mathbf{s}_p
+\end{pmatrix} =
+\begin{pmatrix}
+    s_{11} &amp; s_{12} &amp; \cdots &amp; s_{1n} \\
+    s_{21} &amp; s_{22} &amp; \cdots &amp; s_{2n} \\
+    \vdots &amp; \vdots &amp; &amp; \vdots \\
+    s_{p1} &amp; s_{p2} &amp; \cdots &amp; s_{pn}
+\end{pmatrix}
+\]</span></p>
+<p>设电线连接矩阵为 <span class="math inline">\(\mathbf{W}\)</span></p>
+<p><span class="math display">\[
+\mathbf{W} =
+\begin{pmatrix}
+    \mathbf{w}_1 \\
+    \mathbf{w}_2 \\
+    \vdots \\
+    \mathbf{w}_m
+\end{pmatrix} =
+\begin{pmatrix}
+    w_{11} &amp; w_{12} &amp; \cdots &amp; w_{1n} \\
+    w_{21} &amp; w_{22} &amp; \cdots &amp; w_{2n} \\
+    \vdots &amp; \vdots &amp; &amp; \vdots \\
+    w_{m1} &amp; w_{m2} &amp; \cdots &amp; w_{mn}
+\end{pmatrix}
+\]</span></p>
+<p>设逻辑灯初态矩阵为 <span
+class="math inline">\(\mathbf{L}_0\)</span></p>
+<p><span class="math display">\[
+\mathbf{L}_0 =
+\begin{pmatrix}
+    \mathbf{l}_{01} \\
+    \mathbf{l}_{02} \\
+    \vdots \\
+    \mathbf{l}_{0p}
+\end{pmatrix} =
+\begin{pmatrix}
+    l_{011} &amp; l_{012} &amp; \cdots &amp; l_{01m} \\
+    l_{021} &amp; l_{022} &amp; \cdots &amp; l_{02m} \\
+    \vdots &amp; \vdots &amp; &amp; \vdots \\
+    l_{0p1} &amp; l_{0p2} &amp; \cdots &amp; l_{0pm}
+\end{pmatrix}
+\]</span></p>
+<p>设逻辑灯终态矩阵为 <span
+class="math inline">\(\mathbf{L}_1\)</span></p>
+<p><span class="math display">\[
+\mathbf{L}_1 =
+\begin{pmatrix}
+    \mathbf{l}_{11} \\
+    \mathbf{l}_{12} \\
+    \vdots \\
+    \mathbf{l}_{1p}
+\end{pmatrix} =
+\begin{pmatrix}
+    l_{111} &amp; l_{112} &amp; \cdots &amp; l_{11m} \\
+    l_{121} &amp; l_{122} &amp; \cdots &amp; l_{12m} \\
+    \vdots &amp; \vdots &amp; &amp; \vdots \\
+    l_{1p1} &amp; l_{1p2} &amp; \cdots &amp; l_{1pm}
+\end{pmatrix}
+\]</span></p>
+<p>则多个普通灯在输入多个向量后的终态表达式为</p>
+<p><span class="math display">\[\mathbf{W}\, \mathbf{S}^{\mathrm{T}} +
+\mathbf{L}_0^{\mathrm{T}} = \mathbf{L}_1^{\mathrm{T}}\]</span></p>
+<p>既</p>
+<p><span class="math display">\[
+\begin{pmatrix}
+    w_{11} &amp; w_{12} &amp; \cdots &amp; w_{1n} \\
+    w_{21} &amp; w_{22} &amp; \cdots &amp; w_{2n} \\
+    \vdots &amp; \vdots &amp; &amp; \vdots \\
+    w_{m1} &amp; w_{m2} &amp; \cdots &amp; w_{mn}
+\end{pmatrix}
+\begin{pmatrix}
+    s_{11} &amp; s_{12} &amp; \cdots &amp; s_{1n} \\
+    s_{21} &amp; s_{22} &amp; \cdots &amp; s_{2n} \\
+    \vdots &amp; \vdots &amp; &amp; \vdots \\
+    s_{p1} &amp; s_{p2} &amp; \cdots &amp; s_{pn}
+\end{pmatrix}^{\mathrm{T}} + \\ \ \\
+\begin{pmatrix}
+    l_{011} &amp; l_{012} &amp; \cdots &amp; l_{01m} \\
+    l_{021} &amp; l_{022} &amp; \cdots &amp; l_{02m} \\
+    \vdots &amp; \vdots &amp; &amp; \vdots \\
+    l_{0p1} &amp; l_{0p2} &amp; \cdots &amp; l_{0pm}
+\end{pmatrix}^{\mathrm{T}} =
+\begin{pmatrix}
+    l_{111} &amp; l_{112} &amp; \cdots &amp; l_{11m} \\
+    l_{121} &amp; l_{122} &amp; \cdots &amp; l_{12m} \\
+    \vdots &amp; \vdots &amp; &amp; \vdots \\
+    l_{1p1} &amp; l_{1p2} &amp; \cdots &amp; l_{1pm}
+\end{pmatrix}^{\mathrm{T}}
+\]</span></p>
+<h5 id="全逻辑门方程">全逻辑门方程</h5>
+<p>对于多个逻辑灯在输入多个向量后的终态表达式</p>
+<p><span class="math display">\[\mathbf{W}\, \mathbf{S}^{\mathrm{T}} +
+\mathbf{L}_0^{\mathrm{T}} = \mathbf{L}_1^{\mathrm{T}}\]</span></p>
+<p>将两边取转置得</p>
+<p><span class="math display">\[\mathbf{S}\, \mathbf{W}^{\mathrm{T}} +
+\mathbf{L}_0 = \mathbf{L}_1\]</span></p>
+<p>对于同一全逻辑门，初始逻辑灯相同，可令</p>
+<p><span class="math display">\[
+    \mathbf{S}_1 =
+    (\mathbf{S} | \mathbf{1}) =
+    \begin{pmatrix}
+        s_{11} &amp; s_{12} &amp; \cdots &amp; s_{1n} &amp; 1 \\
+        s_{21} &amp; s_{22} &amp; \cdots &amp; s_{2n} &amp; 1 \\
+        \vdots &amp; \vdots &amp; &amp; \vdots &amp; \vdots \\
+        s_{p1} &amp; s_{p2} &amp; \cdots &amp; s_{pn} &amp; 1
+    \end{pmatrix}
+\]</span></p>
+<p><span class="math display">\[
+    \mathbf{W}_1 =
+    (\mathbf{W} | \mathbf{l}_0^{\mathrm{T}}) =
+    \begin{pmatrix}
+        w_{11} &amp; w_{12} &amp; \cdots &amp; w_{1n} &amp; l_{01} \\
+        w_{21} &amp; w_{22} &amp; \cdots &amp; w_{2n} &amp; l_{02} \\
+        \vdots &amp; \vdots &amp; &amp; \vdots &amp; \vdots \\
+        w_{m1} &amp; w_{m2} &amp; \cdots &amp; w_{mn} &amp; l_{0m}
+    \end{pmatrix}
+\]</span></p>
+<p><span class="math display">\[
+    \mathbf{L}_1 =
+    \begin{pmatrix}
+        l_{111} &amp; l_{112} &amp; \cdots &amp; l_{11m} \\
+        l_{121} &amp; l_{122} &amp; \cdots &amp; l_{12m} \\
+        \vdots &amp; \vdots &amp; &amp; \vdots \\
+        l_{1p1} &amp; l_{1p2} &amp; \cdots &amp; l_{1pm}
+    \end{pmatrix}
+\]</span></p>
+<p>则上式可写为</p>
+<p><span class="math display">\[\mathbf{S}_1\, \mathbf{W}_1^{\mathrm{T}}
+= \mathbf{L}_1\]</span></p>
+<p>既</p>
+<p><span class="math display">\[
+\begin{pmatrix}
+    s_{11} &amp; s_{12} &amp; \cdots &amp; s_{1n} &amp; 1 \\
+    s_{21} &amp; s_{22} &amp; \cdots &amp; s_{2n} &amp; 1 \\
+    \vdots &amp; \vdots &amp; &amp; \vdots &amp; \vdots \\
+    s_{p1} &amp; s_{p2} &amp; \cdots &amp; s_{pn} &amp; 1
+\end{pmatrix}
+\begin{pmatrix}
+    w_{11} &amp; w_{12} &amp; \cdots &amp; w_{1n} &amp; l_{01} \\
+    w_{21} &amp; w_{22} &amp; \cdots &amp; w_{2n} &amp; l_{02} \\
+    \vdots &amp; \vdots &amp; &amp; \vdots &amp; \vdots \\
+    w_{m1} &amp; w_{m2} &amp; \cdots &amp; w_{mn} &amp; l_{0m}
+\end{pmatrix}^{\mathrm{T}} =
+\begin{pmatrix}
+    l_{111} &amp; l_{112} &amp; \cdots &amp; l_{11m} \\
+    l_{121} &amp; l_{122} &amp; \cdots &amp; l_{12m} \\
+    \vdots &amp; \vdots &amp; &amp; \vdots \\
+    l_{1p1} &amp; l_{1p2} &amp; \cdots &amp; l_{1pm}
+\end{pmatrix}
+\]</span></p>
+<p>在已知最小项求解电线连接和逻辑灯初态时，最小项矩阵 <span
+class="math inline">\(\mathbf{S}_1\)</span> 和逻辑灯终态矩阵 <span
+class="math inline">\(\mathbf{L}_1\)</span> 已知，接线与逻辑灯初态矩阵
+<span class="math inline">\(\mathbf{W}_1\)</span>
+未知，求解该矩阵方程即可得到电线连接和逻辑灯初态。</p>
+<p>当已知接线 <span
+class="math inline">\(\mathbf{W}_1\)</span>，求最小项 <span
+class="math inline">\(\mathbf{S}_1\)</span> 时，可以同时对两边求转置</p>
+<p><span class="math display">\[\mathbf{W}_1\, \mathbf{S}_1^{\mathrm{T}}
+= \mathbf{L}_1^{\mathrm{T}}\]</span></p>
+<h5 id="矩阵的初等变换">矩阵的初等变换</h5>
+<p>下面两种变换称为矩阵的 <strong>初等行变换</strong>：</p>
+<ul>
+<li>将矩阵的两行交换；</li>
+<li>将矩阵的某行加到另一行上。</li>
+</ul>
+<p>记矩阵的第 <span class="math inline">\(i\)</span> 行为 <span
+class="math inline">\(r_i\)</span>，则交换第 <span
+class="math inline">\(i\)</span> 行和第 <span
+class="math inline">\(j\)</span> 行被记为 <span
+class="math inline">\(r_i \leftrightarrow r_j\)</span>，将第 <span
+class="math inline">\(i\)</span> 行加到第 <span
+class="math inline">\(j\)</span> 行被记为 <span
+class="math inline">\(r_i + r_j\)</span>。</p>
+<p><span class="math display">\[
+\begin{pmatrix}
+    a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\
+    \vdots &amp; \vdots &amp; &amp; \vdots \\
+    a_{i1} &amp; a_{i2} &amp; \cdots &amp; a_{in} \\
+    \vdots &amp; \vdots &amp; &amp; \vdots \\
+    a_{j1} &amp; a_{j2} &amp; \cdots &amp; a_{jn} \\
+    \vdots &amp; \vdots &amp; &amp; \vdots \\
+    a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn}
+\end{pmatrix}
+\xrightarrow{r_i \leftrightarrow r_j}
+\begin{pmatrix}
+    a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\
+    \vdots &amp; \vdots &amp; &amp; \vdots \\
+    a_{j1} &amp; a_{j2} &amp; \cdots &amp; a_{jn} \\
+    \vdots &amp; \vdots &amp; &amp; \vdots \\
+    a_{i1} &amp; a_{i2} &amp; \cdots &amp; a_{in} \\
+    \vdots &amp; \vdots &amp; &amp; \vdots \\
+    a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn}
+\end{pmatrix}
+\]</span></p>
+<p><span class="math display">\[
+\begin{pmatrix}
+    a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\
+    \vdots &amp; \vdots &amp; &amp; \vdots \\
+    a_{i1} &amp; a_{i2} &amp; \cdots &amp; a_{in} \\
+    \vdots &amp; \vdots &amp; &amp; \vdots \\
+    a_{j1} &amp; a_{j2} &amp; \cdots &amp; a_{jn} \\
+    \vdots &amp; \vdots &amp; &amp; \vdots \\
+    a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn}
+\end{pmatrix}
+\xrightarrow{r_i + r_j}
+\begin{pmatrix}
+    a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\
+    \vdots &amp; \vdots &amp; &amp; \vdots \\
+    a_{i1} &amp; a_{i2} &amp; \cdots &amp; a_{in} \\
+    \vdots &amp; \vdots &amp; &amp; \vdots \\
+    a_{j1} + a_{i1} &amp; a_{j2} + a_{i2} &amp; \cdots &amp; a_{jn} +
+a_{in} \\
+    \vdots &amp; \vdots &amp; &amp; \vdots \\
+    a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn}
+\end{pmatrix}
+\]</span></p>
+<p>而我们将初等行变换定义中的“行”换成“列”，就得到了
+<strong>初等列变换</strong> 的定义。记矩阵的第 <span
+class="math inline">\(i\)</span> 列为 <span
+class="math inline">\(c_i\)</span>，则交换第 <span
+class="math inline">\(i\)</span> 行和第 <span
+class="math inline">\(j\)</span> 列被记为 <span
+class="math inline">\(c_i \leftrightarrow c_j\)</span>，将第 <span
+class="math inline">\(i\)</span> 列加到第 <span
+class="math inline">\(j\)</span> 列被记为 <span
+class="math inline">\(c_i +
+c_j\)</span>。矩阵的初等行变换和初等列变换统称为矩阵的
+<strong>初等变换</strong>。</p>
+<p>如果矩阵 <span class="math inline">\(\mathbf{A}\)</span>
+可以经过有限次初等变换变成矩阵 <span
+class="math inline">\(\mathbf{B}\)</span>，则称矩阵 <span
+class="math inline">\(\mathbf{A}\)</span> 与 <span
+class="math inline">\(\mathbf{B}\)</span> 等价。</p>
+<p>当我们只使用初等行变换对矩阵进行变换时，可以得到一种特殊的矩阵，其特点是：</p>
+<ul>
+<li>矩阵中全部元素为 0 的行都在矩阵的最下面；</li>
+<li>每行左起第一个非 0 元素的下方元素都为 0。</li>
+</ul>
+<p>这种特殊的矩阵被称为
+<strong>行阶梯形矩阵</strong>，将普通矩阵变换为行阶梯形矩阵后，行阶梯形矩阵中的非零行的数量就是该矩阵的秩。</p>
+<div class="admonition example">
+<div class="admonition quote">
+<p><span class="math display">\[
+\begin{pmatrix}
+    1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\
+    0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+    0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 \\
+    0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 \\
+    0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+    0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+\end{pmatrix}
+\]</span></p>
+<p>行阶梯形矩阵</p>
+</div>
+<p>我们可以在行阶梯形矩阵中画一条阶梯线让阶梯线下方全部元素为
+0，阶梯线中的每个竖线都在每行的首个非零元素的左边，每个横线下方元素都是
+0，每个阶梯只有一行，阶梯数就是非零行的行数。</p>
+</div>
+<h5 id="解的存在性">解的存在性</h5>
+<p>在对逻辑门方程求解时，我们需要先判断方程是否有解，判断的方法如下：</p>
+<p>先将两个已知矩阵：最小项矩阵 <span
+class="math inline">\(\mathbf{S}_1\)</span> 和逻辑门矩阵 <span
+class="math inline">\(\mathbf{L}_1\)</span> 合并为一个新的增广矩阵</p>
+<p><span class="math display">\[
+(\mathbf{S}_1 | \mathbf{L}_1) =
+\left(
+    \begin{array}{ccccc|ccccc}
+        s_{11} &amp; s_{12} &amp; \cdots &amp; s_{1n} &amp; 1 &amp;
+l_{111} &amp; l_{112} &amp; \cdots &amp; l_{11m} \\
+        s_{21} &amp; s_{22} &amp; \cdots &amp; s_{2n} &amp; 1 &amp;
+l_{121} &amp; l_{122} &amp; \cdots &amp; l_{12m} \\
+        \vdots &amp; \vdots &amp; &amp; \vdots &amp; \vdots &amp; \vdots
+&amp; \vdots &amp; &amp; \vdots \\
+        s_{p1} &amp; s_{p2} &amp; \cdots &amp; s_{pn} &amp; 1 &amp;
+l_{1p1} &amp; l_{1p2} &amp; \cdots &amp; l_{1pm}
+    \end{array}
+\right)
+\]</span></p>
+<p>然后将增广矩阵只使用初等行变换，转换为行阶梯矩阵。对于新的行阶梯矩阵，按照来自
+<span class="math inline">\(\mathbf{S}_1\)</span> 和 <span
+class="math inline">\(\mathbf{L}_1\)</span> 的列重新划分为两个矩阵 <span
+class="math inline">\(\boldsymbol{S}_1\)</span> 和 <span
+class="math inline">\(\boldsymbol{L}_1\)</span>。</p>
+<p>当全部在新系数矩阵 <span
+class="math inline">\(\boldsymbol{S}_1\)</span> 中为全零的行在新常数矩阵
+<span class="math inline">\(\boldsymbol{L}_1\)</span>
+中对应的行也全零时，矩阵方程有解。</p>
+<p>当存在在新系数矩阵 <span
+class="math inline">\(\boldsymbol{S}_1\)</span> 中为全零的行在新常数矩阵
+<span class="math inline">\(\boldsymbol{L}_1\)</span>
+中对应的行不为全零时，说明存在常数无法用未知数线性表示，存在矛盾方程，矩阵方程无解。</p>
+<h5 id="解的数量">解的数量</h5>
+<div style="page-break-after: always;">
+
+</div>
+<nav class="chapter-nav">
+<a href="第二章-电路基础.html" class="nav-prev">← 第二章 电路基础</a>
+<span class="nav-center">第三章 逻辑电路</span>
+
+</nav>
+</body>
+</html>
